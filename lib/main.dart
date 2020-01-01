@@ -19,7 +19,10 @@ class MyHomePage extends StatelessWidget {
     Transaction(
         id: 't1', title: 'New Shoes', amount: 69.99, date: DateTime.now()),
     Transaction(
-        id: 't2', title: 'Weekly Groceries', amount: 16.00, date: DateTime.now()),
+        id: 't2',
+        title: 'Weekly Groceries',
+        amount: 16.00,
+        date: DateTime.now()),
   ];
   @override
   Widget build(BuildContext context) {
@@ -39,9 +42,16 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          Card(
-            color: Colors.red,
-            child: Text('LIST of TX'),
+          Column(
+            children: transaction.map((tx) {
+              return Card(
+                child: Row(
+                  children: <Widget>[
+                    Container(child: Text(tx.amount.toString())), Column(children: <Widget>[ Text(tx.title), Text(tx.date.toString())],)
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),
